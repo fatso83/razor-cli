@@ -21,6 +21,17 @@ Hello John Smith, this is an example of what <strong>Razor CLI</strong> can do!
 
 It might be possible to skip the `mono` bit on Windows(?).
 
+### Using libraries in your code such as `Html.Raw`?
+The RazorEngine driving this thing is only concerned
+with the actual parsing. Any libraries you might
+use in your templates [is none of its concern](https://antaris.github.io/RazorEngine/ReferenceResolver.html)
+needs to be added to the runtime and made
+available for the runtime to use when actually
+running the template.
+
+To [solve this I need help](https://github.com/fatso83/razor-cli/issues/1)
+from someone with more .NET foo than myself.
+
 ## Annoyed with the Makefile? Something else?
 This was whipped together in a couple of hours by
 someone unfamiliar with the .NET pipeline using
@@ -47,5 +58,7 @@ make
 
 You know have a `razor-cli.exe` binary
 
-### Known issues
-- no `@Html` helpers in the scope. Only simple `@model` accesses.
+## Known issues
+- Very little error handling
+- Very little help using the cli
+- [No way to use libraries in the templates (#1)](https://github.com/fatso83/razor-cli/issues/1)
