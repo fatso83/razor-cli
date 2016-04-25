@@ -21,7 +21,7 @@ razor-cli.exe: razor-cli.cs
 	mcs /reference:${RAZORENG_PATH}/RazorEngine.dll /reference:${JSON_PATH}/Newtonsoft.Json.dll razor-cli.cs  
 
 run: all
-	MONO_PATH="${MONO_PATH}" mono razor-cli.exe
+	MONO_PATH="${MONO_PATH}" mono razor-cli.exe partial.example.cshtml model.example.json
 
 clean: 
 	rm -f razor-cli.exe
