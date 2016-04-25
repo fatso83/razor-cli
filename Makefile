@@ -1,6 +1,7 @@
 RAZOR_PATH=Microsoft.AspNet.Razor.3.0.0/lib/net45
 RAZORENG_PATH=RazorEngine.3.8.2/lib/net45
-MONO_PATH=${RAZORENG_PATH}:${RAZOR_PATH}
+JSON_PATH=Newtonsoft.Json.8.0.3/lib/net45
+MONO_PATH=${RAZORENG_PATH}:${RAZOR_PATH}:${JSON_PATH}
 
 # default target
 all: razor-cli.exe
@@ -14,10 +15,10 @@ nuget:
 # Not sure how to add this target as a dependency while avoiding 
 # running nuget every time
 dependencies: nuget
-	mono nuget.exe install RazorEngine
+	mono nuget.exe install RazorEngine && mono nuget.exe install Newtonsoft.Json
 
 razor-cli.exe: razor-cli.cs
-	mcs /reference:${RAZORENG_PATH}/RazorEngine.dll razor-cli.cs  
+	mcs /reference:${RAZORENG_PATH}/RazorEngine.dll /reference:${JSON_PATH}/Newtonsoft.Json.dll razor-cli.cs  
 
 run: all
 	MONO_PATH="${MONO_PATH}" mono razor-cli.exe
