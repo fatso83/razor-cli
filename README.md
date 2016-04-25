@@ -56,7 +56,7 @@ make dependencies #downloads NuGet and libs
 make 
 ```
 
-You know have a `razor-cli.exe` binary
+You now have a `razor-cli.exe` binary
 
 ## Known issues
 - Very little error handling
