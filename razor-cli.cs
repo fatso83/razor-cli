@@ -13,9 +13,21 @@ public class RazorCli
         string template = ReadFile(args[0]);
         JObject model = ParseModel(args[1]);
 
-        var result = Engine.Razor.RunCompile(template, "templateKey", null, model);
+        var result = CompileTemplate(template, model);
 
         Console.WriteLine (result);
+    }
+
+    private static string CompileTemplate (string template, JObject model)
+    {
+        string res = "";
+        try {
+            res = Engine.Razor.RunCompile(template, "templateKey", null, model);
+        } catch( RazorEngine.Templating.TemplateCompilationException ex ) {
+            Console.WriteLine (ex);
+            System.Environment.Exit(1);
+        }
+        return res;
     }
 
     /* Cannot dispatch a dynamic object to extension methods */

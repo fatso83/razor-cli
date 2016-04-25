@@ -11,11 +11,12 @@ as part of a build pipeline, possibly being wrapped
 by other build tools (NPM, Gulp, Grunt, ...).
 
 ## Usage
-Assuming `MONO_PATH` is set up to include the 
-dependencies:
 
 ```
-mono razor-cli.exe _my-partial.cshtml example-model.json
+export MONO_PATH="lib/RazorEngine.3.8.2/lib/net45:lib/Microsoft.AspNet.Razor.3.0.0/lib/net45:lib/Newtonsoft.Json.8.0.3/lib/net45" 
+
+mono razor-cli.exe partial.example.cshtml model.example.json
+Hello John Smith, this is an example of what <strong>Razor CLI</strong> can do!
 ```
 
 It might be possible to skip the `mono` bit on Windows(?).
@@ -46,7 +47,5 @@ make
 
 You know have a `razor-cli.exe` binary
 
-### Run the exe
-
-You need to have the libs in the `$MONO_PATH`.
-See an example run by typing `make run`
+### Known issues
+- no `@Html` helpers in the scope. Only simple `@model` accesses.
