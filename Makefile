@@ -1,7 +1,8 @@
-RAZOR_PATH=Microsoft.AspNet.Razor.3.0.0/lib/net45
-RAZORENG_PATH=RazorEngine.3.8.2/lib/net45
-JSON_PATH=Newtonsoft.Json.8.0.3/lib/net45
+RAZOR_PATH=lib/Microsoft.AspNet.Razor.3.0.0/lib/net45
+RAZORENG_PATH=lib/RazorEngine.3.8.2/lib/net45
+JSON_PATH=lib/Newtonsoft.Json.8.0.3/lib/net45
 MONO_PATH=${RAZORENG_PATH}:${RAZOR_PATH}:${JSON_PATH}
+NUGET_CMD=mono tools/nuget.exe
 
 # default target
 all: razor-cli.exe
@@ -9,13 +10,11 @@ all: razor-cli.exe
 # Targets with no real dependencies on files
 .PHONY: all dependencies clean  nuget
 
-nuget: 
-	curl https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -o nuget.exe
+update-nuget: 
+	[ -e tools/nuget.exe ] || curl https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -o tools/nuget.exe
 
-# Not sure how to add this target as a dependency while avoiding 
-# running nuget every time
-dependencies: nuget
-	mono nuget.exe install RazorEngine && mono nuget.exe install Newtonsoft.Json
+dependencies: packages.config update-nuget
+	${NUGET_CMD} restore -PackagesDirectory lib
 
 razor-cli.exe: razor-cli.cs
 	mcs /reference:${RAZORENG_PATH}/RazorEngine.dll /reference:${JSON_PATH}/Newtonsoft.Json.dll razor-cli.cs  
@@ -27,10 +26,10 @@ clean:
 	rm -f razor-cli.exe
 
 clean-libs:
-	rm -rf Microsoft.AspNet.Razor.3.0.0/ RazorEngine.3.8.2/ 
+	rm -rf lib
 
 clean-nuget:
-	rm -f nuget.exe
+	rm -f tools/nuget.exe
 
 clean-all: clean clean-libs clean-nuget
 
