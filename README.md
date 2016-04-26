@@ -12,7 +12,7 @@ be able to use this with [Node is in place](https://github.com/fatso83/razor-cli
 
 ## Usage
 
-```
+```bash
 export MONO_PATH="lib/RazorEngine.3.8.2/lib/net45:lib/Microsoft.AspNet.Razor.3.0.0/lib/net45:lib/Newtonsoft.Json.8.0.3/lib/net45" 
 
 mono razor-cli.exe partial.example.cshtml model.example.json
@@ -56,5 +56,5 @@ You now have a `razor-cli.exe` binary.
 ## Known issues
 - Very little error handling
 - Very little help using the cli
-- Mono runtime needed issues, even though you have a working .NET runtime on Windows. See [issue #2]((https://github.com/fatso83/razor-cli/issues/2)).
+- Mono runtime needed issues, even though you have a working .NET runtime on Windows. See [issue #2](https://github.com/fatso83/razor-cli/issues/2).
 - [No way to use libraries in the templates (#1)](https://github.com/fatso83/razor-cli/issues/1)
