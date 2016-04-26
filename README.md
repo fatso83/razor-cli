@@ -1,5 +1,5 @@
 # razor-cli
-> A CLI app to compile Razor templates
+> A cross-platform CLI app to compile Razor templates
 
 This tool is mean to scratch an itch when it comes
 to reusing partials from ASP.NET applications in 
@@ -19,7 +19,9 @@ mono razor-cli.exe partial.example.cshtml model.example.json
 Hello John Smith, this is an example of what <strong>Razor CLI</strong> can do!
 ```
 
-It might be possible to skip the `mono` bit on Windows(?).
+You can skip the `mono` bit on Windows, but I could really need 
+[a hand](https://github.com/fatso83/razor-cli/issues/2) testing
+and documenting this.
 
 ### Using libraries in your code such as `Html.Raw`?
 The RazorEngine driving this thing is only concerned
@@ -38,25 +40,18 @@ someone unfamiliar with the .NET pipeline using
 a text editor and the command line on a Mac so it might 
 deviate a bit from _best practices_.
 
-Please excuse the use of non-Microsoft standard 
-tools such as Make. This was just done to get something
-out the door, so feel free to supply me with
-a pull request that makes a `*.msbuild` file
-that can be built with `xbuild` and `MSBuild`.
-
-If you supply a pull request, please bear in mind
-that it needs to be buildable and runnable
-on all platforms without using Visual Studio.
+See the [issues](https://github.com/fatso83/razor-cli/issues)
+for how you can help out.
 
 ### Build
-We assume you have the Mono runtime in your `$PATH`
+We assume you have the Mono runtime and tools in your `$PATH`
 
 ```
 make dependencies #downloads NuGet and libs
 make 
 ```
 
-You now have a `razor-cli.exe` binary
+You now have a `razor-cli.exe` binary.
 
 ## Known issues
 - Very little error handling
