@@ -7,8 +7,8 @@ other settings (such as styleguides) and keeping
 them in sync.
 
 The basic interface is just to be able to use this
-as part of a build pipeline, possibly being wrapped
-by other build tools (NPM, Gulp, Grunt, ...).
+as part of a build pipeline. A basic wrapper to
+be able to use this with [Node is in place](https://github.com/fatso83/razor-cli-node).
 
 ## Usage
 
@@ -61,4 +61,5 @@ You now have a `razor-cli.exe` binary
 ## Known issues
 - Very little error handling
 - Very little help using the cli
+- Mono runtime needed issues, even though you have a working .NET runtime on Windows. See [issue #2]((https://github.com/fatso83/razor-cli/issues/2)).
 - [No way to use libraries in the templates (#1)](https://github.com/fatso83/razor-cli/issues/1)
