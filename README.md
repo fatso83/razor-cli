@@ -12,16 +12,11 @@ be able to use this with [Node is in place](https://github.com/fatso83/razor-cli
 
 ## Usage
 
-```bash
-export MONO_PATH="lib/RazorEngine.3.8.2/lib/net45:lib/Microsoft.AspNet.Razor.3.0.0/lib/net45:lib/Newtonsoft.Json.8.0.3/lib/net45" 
-
-mono razor-cli.exe partial.example.cshtml model.example.json
+Assuming the binary has been built:
+```
+razor-cli partial.example.cshtml model.example.json
 Hello John Smith, this is an example of what <strong>Razor CLI</strong> can do!
 ```
-
-You can skip the `mono` bit on Windows, but I could really need 
-[a hand](https://github.com/fatso83/razor-cli/issues/2) testing
-and documenting this.
 
 ### Using libraries in your code such as `Html.Raw`?
 The RazorEngine driving this thing is only concerned
@@ -47,8 +42,7 @@ for how you can help out.
 We assume you have the Mono runtime and tools in your `$PATH`
 
 ```
-make dependencies #downloads NuGet and libs
-make 
+make -s dependencies run
 ```
 
 You now have a `razor-cli.exe` binary.
@@ -56,5 +50,5 @@ You now have a `razor-cli.exe` binary.
 ## Known issues
 - Very little error handling
 - Very little help using the cli
-- Mono runtime needed issues, even though you have a working .NET runtime on Windows. See [issue #2](https://github.com/fatso83/razor-cli/issues/2).
 - [No way to use libraries in the templates (#1)](https://github.com/fatso83/razor-cli/issues/1)
+- Needs restructuring to be buildable using .NET
