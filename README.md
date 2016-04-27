@@ -14,9 +14,11 @@ be able to use this with [Node is in place](https://github.com/fatso83/razor-cli
 
 Assuming the binary has been built:
 ```
-razor-cli partial.example.cshtml model.example.json
+razor-cli examples/partial.cshtml examples/model.json
 Hello John Smith, this is an example of what <strong>Razor CLI</strong> can do!
 ```
+
+This is what `make -s run` does
 
 ### Using libraries in your code such as `Html.Raw`?
 The RazorEngine driving this thing is only concerned
@@ -42,7 +44,7 @@ for how you can help out.
 We assume you have the Mono runtime and tools in your `$PATH`
 
 ```
-make -s dependencies run
+make -s
 ```
 
 You now have a `razor-cli.exe` binary.

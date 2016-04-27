@@ -36,7 +36,7 @@ ${BIN}: razor-cli.cs copy-dependencies
 	mcs /reference:${RAZORENG_PATH} /reference:${JSON_PATH} razor-cli.cs  -out:${BIN} > /dev/null
 
 run: all
-	${BIN_CMD} partial.example.cshtml model.example.json
+	${BIN_CMD} examples/partial.cshtml examples/model.json
 
 clean: clean-build
 
