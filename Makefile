@@ -6,8 +6,12 @@ BIN=${BUILD}/razor-cli.exe
 RAZOR_PATH=lib/Microsoft.AspNet.Razor.3.0.0/lib/net45/System.Web.Razor.dll
 RAZORENG_PATH=lib/RazorEngine.3.8.2/lib/net45/RazorEngine.dll
 JSON_PATH=lib/Newtonsoft.Json.8.0.3/lib/net45/Newtonsoft.Json.dll
+MVC=lib/Microsoft.AspNet.Mvc.5.2.3/lib/net45/System.Web.Mvc.dll
+MOQ=lib/Moq.4.2.1510.2205/lib/net40/Moq.dll
+MONO_ROUTING=/usr/local/Cellar/mono/4.2.2.30/lib/mono/4.5/System.Web.Routing.dll 
+MONO_WEB=/usr/local/Cellar/mono/4.2.2.30/lib/mono/4.5/System.Web.dll
 
-DEPS=${RAZOR_PATH} ${RAZORENG_PATH} ${JSON_PATH}
+DEPS=${RAZOR_PATH} ${RAZORENG_PATH} ${JSON_PATH} ${MVC} ${MOQ}  ${MONO_WEB} ${MONO_ROUTING}
 
 NUGET_CMD=tools/nuget
 BIN_CMD=${BUILD}/${BIN_NAME}
@@ -33,7 +37,9 @@ copy-dependencies: dependencies
 	cp ${DEPS} ${BUILD}/ > /dev/null
 
 ${BIN}: razor-cli.cs copy-dependencies
-	mcs /reference:${RAZORENG_PATH} /reference:${JSON_PATH} razor-cli.cs  -out:${BIN} > /dev/null
+	mcs  /reference:${MVC} /reference:${RAZORENG_PATH} /reference:${JSON_PATH} /reference:${MOQ} \
+	/reference:${MONO_WEB} /reference:${MONO_ROUTING} \
+	razor-cli.cs  -out:${BIN} > /dev/null
 
 run: all
 	${BIN_CMD} examples/partial.cshtml examples/model.json

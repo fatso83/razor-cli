@@ -1,1 +1,13 @@
+@using System.Web;
+@using System.Web.Mvc;
+
 Hello @Model.Name, this is an example of what <strong>@Model.PackageName</strong> can do!
+
+@{ var numbers = new List<int>(){ 1,2,3 }; }
+Countdown:
+@foreach( var i in numbers ) {
+    <span>@i</span>
+}
+
+@Html.Raw("heisann");
+    
